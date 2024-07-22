@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use App\Models\Message;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,8 +20,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/broadcast', function () {
-    broadcast(new App\Events\Example());
-
+  //  broadcast(new App\Events\Example(User::find(1),Message::find(1)));
+  broadcast(new App\Events\Chat\ExampleTwo());
+    //
 });
 
 require __DIR__.'/auth.php';

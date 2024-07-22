@@ -15,7 +15,10 @@
                 console.log('Hello from Alpine.js!');
                 "> --}}
  <div class="p-6 text-gray-900 dark:text-gray-100" x-init="
-                Echo.channel('chat').listen('Example', (e) => {
+                {{-- Echo.channel('chat').listen('Example', (e) => {
+                    console.log(e);
+                }); --}}
+                 Echo.channel('chat').listen('.App\\Events\\Chat\\ExampleTwo', (e) => {
                     console.log(e);
                 });
                 ">

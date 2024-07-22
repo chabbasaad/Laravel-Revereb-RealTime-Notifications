@@ -1,0 +1,13 @@
+
+
+php artisan make:event Chat\ExampleTwo
+
+Echo.channel('chat').listen('.App\\Events\\Chat\\ExampleTwo', (e) => {
+                    console.log(e);
+                });
+
+
+                go to Echo js
+if not following larevel convention we can use this
+                namespace : ''
+                 // namespace: 'App.Events.Chat',
