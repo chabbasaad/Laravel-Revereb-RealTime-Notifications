@@ -20,8 +20,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/broadcast', function () {
-  //  broadcast(new App\Events\Example(User::find(1),Message::find(1)));
-  broadcast(new App\Events\Chat\ExampleTwo());
+    broadcast(new App\Events\Example(User::find(1),Message::find(1)));
+  //broadcast(new App\Events\Chat\ExampleTwo());
     //
 });
 

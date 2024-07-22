@@ -17,10 +17,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 // ShouldBroadcast put in a queue
 // ShouldBroadcastNow broadcast immediately
 
-class Example implements ShouldBroadcastNow
+class Example implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+
+
+    // run a speicific queue
+
+   // public string $queue = 'chat';
+
+    // php artisan queue:work --queue=chat
+
+    public function broadcastQueue() : string
+    {
+        return 'chat';
+    }
 
    // public string $message = 'Hello World';
     /**
