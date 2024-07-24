@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -12,31 +13,18 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-
-// ShouldBroadcast put in a queue
-// ShouldBroadcastNow broadcast immediately
-
-class Example implements ShouldBroadcastNow
+class OrderShipped implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(public User $user,Public Order $order)
     {
-        $this->user = ['id'=>5, 'email'=>'saad@gmail.com'];
+        //
     }
 
-    public function broadcastWith(): array
-    {
-        return [
-           'id' => $this->user['id'],
-           'email' => $this->user['email'],
-
-        ];
-    }
     /**
      * Get the channels the event should broadcast on.
      *
@@ -45,7 +33,7 @@ class Example implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new Channel('chat'),
+            new PrivateChannel('users.'.$this->user->id),
         ];
     }
 }
